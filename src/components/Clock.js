@@ -64,8 +64,8 @@ export default class Clock extends React.Component {
             //http request
             var xhr = new XMLHttpRequest();
             //make get request async??
-            console.log("https://api.darksky.net/forecast/ce47d0cfdec16677f87ec01676cf27fb/" + long + "," + lat);
-            xhr.open('GET', "https://api.darksky.net/forecast/ce47d0cfdec16677f87ec01676cf27fb/" + long + "," + lat, true);
+            console.log("https://api.darksky.net/forecast/ce47d0cfdec16677f87ec01676cf27fb/" + lat + "," + long);
+            xhr.open('GET', "https://api.darksky.net/forecast/ce47d0cfdec16677f87ec01676cf27fb/" + lat + "," + long, true);
             xhr.onreadystatechange = () => {
                 if (xhr.readyState === xhr.LOADING) {
                     
