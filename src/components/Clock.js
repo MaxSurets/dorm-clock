@@ -52,6 +52,29 @@ export default class Clock extends React.Component {
     }
 
     render() {
+        //get location
+        let long;
+        let lat;
+        navigator.geolocation.getCurrentPosition(success, fail);
+        function success(position) {
+            long = position.coords.longitude;
+            lat = position.coords.latitude;
+            console.log("Longitude: " + long);
+            console.log("Latitude: " + lat);
+        }
+        function fail() {
+            console.log("oopsie woopsie. can't get longitude and latitude.")
+        }
+        //http request
+        var xhr = new XMLHttpRequest();
+        xhr.open('GET', "https://api.darksky.net/forecast/ce47d0cfdec16677f87ec01676cf27fb/" + long + "," + lat, true);
+        xhr.send();
+        if (xhr.readyState == 4 && xhr.status == 200) {
+            console.log(JSON.parse(xhr.responseText));
+            alert("works");
+        }
+        
+
         return (
             <div>
                 <p>{this.state.h}:{this.state.m}:{this.state.s}</p>
