@@ -93,6 +93,8 @@ export default class Clock extends React.Component {
             <div>
                 <p>{this.state.h}:{this.state.m}:{this.state.s}</p>
                 <p className="day">{this.state.day}</p>
+                {/* add svg */}
+                {/* <img src={'sun-solid.svg'} alt="icon"/> */}
             </div>
         )
     }
