@@ -1,6 +1,6 @@
 import React from 'react';
 import '../css/clock.css';
-//import { ReactComponent as Fuck } from '../icons/bolt-solid.svg';
+import icon from '../icons/bolt-solid.svg';
 
 export default class Clock extends React.Component {
     constructor(props) {
@@ -56,6 +56,7 @@ export default class Clock extends React.Component {
         //get location
         var long;
         var lat;
+        var weatherRes;
         navigator.geolocation.getCurrentPosition(success, fail);
         function success(position) {
             long = position.coords.longitude;
@@ -76,6 +77,8 @@ export default class Clock extends React.Component {
                     if (xhr.status === 200) {
                         console.log("DONE");
                         console.log(JSON.parse(xhr.responseText));
+                        weatherRes = JSON.parse(xhr.responseText);
+                        console.log("repsonse: " + JSON.stringify(weatherRes));
                     }
                 }
                 else {
@@ -94,7 +97,7 @@ export default class Clock extends React.Component {
             <div>
                 <p>{this.state.h}:{this.state.m}:{this.state.s}</p>
                 <p className="day">{this.state.day}</p>
-                {/* add svg */}
+                <img  src={icon} alt="icon"/>
             </div>
         )
     }
