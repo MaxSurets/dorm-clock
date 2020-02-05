@@ -1,5 +1,6 @@
 import React from 'react';
-import '../css/clock.css'
+import '../css/clock.css';
+//import { ReactComponent as Fuck } from '../icons/bolt-solid.svg';
 
 export default class Clock extends React.Component {
     constructor(props) {
@@ -39,7 +40,7 @@ export default class Clock extends React.Component {
             s: this.makeTwoDigit(date.getSeconds(), false),
         })
     }
-    
+
 
     makeTwoDigit = (i, hours) => {
         if (hours && i == 0)
@@ -68,7 +69,7 @@ export default class Clock extends React.Component {
             xhr.open('GET', "https://api.darksky.net/forecast/ce47d0cfdec16677f87ec01676cf27fb/" + lat + "," + long, true);
             xhr.onreadystatechange = () => {
                 if (xhr.readyState === xhr.LOADING) {
-                    
+
                     console.log("LOADING");
                 }
                 else if (xhr.readyState === xhr.DONE) {
@@ -86,15 +87,14 @@ export default class Clock extends React.Component {
         function fail() {
             console.log("oopsie woopsie. can't get longitude and latitude.")
         }
-       
+
         //console.log(JSON.parse(xhr.responseText));
-        
+
         return (
             <div>
                 <p>{this.state.h}:{this.state.m}:{this.state.s}</p>
                 <p className="day">{this.state.day}</p>
                 {/* add svg */}
-                {/* <img src={'sun-solid.svg'} alt="icon"/> */}
             </div>
         )
     }
