@@ -1,5 +1,6 @@
 import React from 'react';
 import '../css/clock.css';
+import { WeatherContainer } from './Weather';
 import icon from '../icons/bolt-solid.svg';
 
 export default class Clock extends React.Component {
@@ -20,6 +21,7 @@ export default class Clock extends React.Component {
             1000
         );
     }
+
     makeDay = (i) => {
         let tday = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
         if (i >= 0 && i <= 6)
@@ -53,51 +55,15 @@ export default class Clock extends React.Component {
     }
 
     render() {
-        //get location
-        var long;
-        var lat;
-        var weatherRes;
-        navigator.geolocation.getCurrentPosition(success, fail);
-        function success(position) {
-            long = position.coords.longitude;
-            lat = position.coords.latitude;
-            console.log("Longitude: " + long);
-            console.log("Latitude: " + lat);
-            //http request
-            var xhr = new XMLHttpRequest();
-            //make get request async??
-            console.log("https://api.darksky.net/forecast/ce47d0cfdec16677f87ec01676cf27fb/" + lat + "," + long);
-            xhr.open('GET', "https://api.darksky.net/forecast/ce47d0cfdec16677f87ec01676cf27fb/" + lat + "," + long, true);
-            xhr.onreadystatechange = () => {
-                if (xhr.readyState === xhr.LOADING) {
 
-                    console.log("LOADING");
-                }
-                else if (xhr.readyState === xhr.DONE) {
-                    if (xhr.status === 200) {
-                        console.log("DONE");
-                        console.log(JSON.parse(xhr.responseText));
-                        weatherRes = JSON.parse(xhr.responseText);
-                        console.log("repsonse: " + JSON.stringify(weatherRes));
-                    }
-                }
-                else {
-                    console.log(`XHR Failed with status ${xhr.status}: ${xhr.statusText}`);
-                }
-            };
-            xhr.send();
-        }
-        function fail() {
-            console.log("oopsie woopsie. can't get longitude and latitude.")
-        }
-
-        //console.log(JSON.parse(xhr.responseText));
 
         return (
             <div>
                 <p>{this.state.h}:{this.state.m}:{this.state.s}</p>
                 <p className="day">{this.state.day}</p>
-                <img  src={icon} alt="icon"/>
+                {/* <img  src={icon} alt="icon"/> */}
+                <WeatherContainer />
+
             </div>
         )
     }
