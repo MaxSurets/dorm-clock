@@ -12,5 +12,13 @@ export const retrieveWeather = () => {
         })
         
         console.log('calling endpoint')
+
+
+        let result = 'whatever'
+        dispatch({
+            type: actions.GET_WEATHER_SUCCESS,
+            weather: result
+        })
+
     }
 }

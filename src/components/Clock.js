@@ -1,7 +1,7 @@
 import React from 'react';
 import '../css/clock.css';
 import { WeatherContainer } from './Weather';
-import icon from '../icons/bolt-solid.svg';
+//import icon from '../icons/bolt-solid.svg';
 
 export default class Clock extends React.Component {
     constructor(props) {
@@ -61,7 +61,6 @@ export default class Clock extends React.Component {
             <div>
                 <p>{this.state.h}:{this.state.m}:{this.state.s}</p>
                 <p className="day">{this.state.day}</p>
-                {/* <img  src={icon} alt="icon"/> */}
                 <WeatherContainer />
 
             </div>

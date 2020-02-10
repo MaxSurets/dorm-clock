@@ -3,7 +3,7 @@ import { retrieveWeather } from '../actions/weatherActions'
 
 import React from 'react';
 import '../css/weather.css';
-import icon from '../icons/bolt-solid.svg';
+//import icon from '../icons/bolt-solid.svg';
 
 
 
@@ -31,9 +31,23 @@ class Weather extends React.PureComponent {
     }
 
     render() {
-
-
         return (
+            /**
+             * List of Dark Sky icons:
+             * clear-day DONE
+             * clear-night DONE
+             * rain DONE
+             * snow DONE
+             * sleet DONE
+             * wind DONE
+             * fog DONE
+             * cloudy DONE
+             * partly-cloudy-day DONE
+             * partly-cloudy-night DONE
+             * hail
+             * thunderstorm DONE
+             * tornado
+             */
             <div>
                 <p className="weather-title">Weather Widget</p>
                 {/* <img  src={icon} alt="icon"/> */}
