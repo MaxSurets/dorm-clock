@@ -45,7 +45,7 @@ export default class Clock extends React.Component {
 
 
     makeTwoDigit = (i, hours) => {
-        if (hours && i == 0)
+        if (hours && i === 0)
             i = 12;
         if (i < 10)
             i = '0' + i;

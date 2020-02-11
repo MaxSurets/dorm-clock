@@ -18,7 +18,7 @@ const weather = (state = initialState, action) => {
             return {
                 ...state,
                 time: action.time,
-                weatherInfo: action.weather
+                weatherInfo: action.weatherInfo
             }
         case actions.GET_WEATHER_FAILURE:
             console.log('GET_WEATHER_FAILURE fired');
