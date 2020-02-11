@@ -17,7 +17,24 @@ import temperature_high from '../icons/temperature-high.svg';
 import temperature_low from '../icons/temperature-low.svg';
 import thunderstorm from '../icons/thunderstorm.svg';
 import wind from '../icons/wind.svg';
-
+import hail from '../icons/hail.svg';
+const weatherDic = {
+    "bolt": bolt,
+    "cloudy": cloud,
+    "partly-cloudy-night": cloud_moon,
+    "partly-cloudy-day": cloud_sun,
+    "fog": fog,
+    "clear-night": moon,
+    "sleet": sleet,
+    "snow": snow,
+    "snowflake": snowflake,
+    "clear-day": sun,
+    "temperature-high": temperature_high,
+    "temperature-low": temperature_low,
+    "thunderstorm": thunderstorm,
+    "wind": wind,
+    "hail": hail
+};
 
 
 class Weather extends React.PureComponent {
@@ -45,7 +62,7 @@ class Weather extends React.PureComponent {
     theWeather = () => {
         console.log('called theWeather')
         if (this.props.weather) {
-            let {currently, hourly, daily} = JSON.parse(this.props.weather);
+            let { currently, hourly, daily } = JSON.parse(this.props.weather);
             console.log('interesting', currently, hourly, daily);
             return (
                 <div>
