@@ -5,8 +5,8 @@ import React from 'react';
 import '../css/weather.css';
 import bolt from '../icons/bolt.svg';
 import cloud from '../icons/cloud.svg';
-import cloud_moon from '../icons/cloud-mood.svg';
-import cloud_sun from '../icons/could-sun.svg';
+import cloud_moon from '../icons/cloud-moon.svg';
+import cloud_sun from '../icons/cloud-sun.svg';
 import fog from '../icons/fog.svg';
 import moon from '../icons/moon.svg';
 import sleet from '../icons/sleet.svg';
@@ -102,6 +102,7 @@ class Weather extends React.PureComponent {
                 <div style={{ height: "300px", color: "white" }}>
                     {this.theWeather()}
                 </div>
+                <img src={weatherDic["bolt"]} />
             </div>
         )
     }
