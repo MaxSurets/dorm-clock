@@ -3,7 +3,20 @@ import { retrieveWeather } from '../actions/weatherActions'
 
 import React from 'react';
 import '../css/weather.css';
-//import icon from '../icons/bolt-solid.svg';
+import bolt from '../icons/bolt.svg';
+import cloud from '../icons/cloud.svg';
+import cloud_moon from '../icons/cloud-mood.svg';
+import cloud_sun from '../icons/could-sun.svg';
+import fog from '../icons/fog';
+import moon from '../icons/moon.svg';
+import sleet from '../icons/sleet.svg';
+import snow from '../icons/snow.svg';
+import snowflake from '../icons/snowflake.svg';
+import sun from '../icons/sun.svg';
+import temperature_high from '../icons/temperature-high.svg';
+import temperature_low from '../icons/temperature-low.svg';
+import thunderstorm from '../icons/thunderstorm.svg';
+import wind from '../icons/wind.svg';
 
 
 
