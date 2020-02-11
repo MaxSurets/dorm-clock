@@ -18,6 +18,7 @@ import temperature_low from '../icons/temperature-low.svg';
 import thunderstorm from '../icons/thunderstorm.svg';
 import wind from '../icons/wind.svg';
 import hail from '../icons/hail.svg';
+import rain from '../icons/rain.svg';
 const weatherDic = {
     "bolt": bolt,
     "cloudy": cloud,
@@ -33,7 +34,8 @@ const weatherDic = {
     "temperature-low": temperature_low,
     "thunderstorm": thunderstorm,
     "wind": wind,
-    "hail": hail
+    "hail": hail,
+    "rain": rain
 };
 
 
@@ -59,15 +61,58 @@ class Weather extends React.PureComponent {
         this.props.getWeather()
     }
 
+    fiveHourForecast = (hourly) => {
+        let forecast = [];
+        for (let x = 1; x <= 5; x++) {
+            let hour = hourly.data[x];
+            let d = new Date(hour.time * 1000)
+            let dHour = d.getHours();
+            if (dHour > 12) {
+                dHour -= 12;
+            }
+            else if (dHour === 0) {
+                dHour = 12;
+            }
+            forecast.push(
+                <div className="hour-box">
+                    <h4>{Math.round(hour.apparentTemperature)}°</h4>
+                    {this.weatherIcon(hour.icon)}
+                    <h4>{dHour}:00</h4>
+                </div>);
+        }
+        return <div className="hour-box-container">{forecast}</div>
+
+    }
+
     theWeather = () => {
         console.log('called theWeather')
         if (this.props.weather) {
             let { currently, hourly, daily } = JSON.parse(this.props.weather);
             console.log('interesting', currently, hourly, daily);
+
             return (
-                <div>
-                    <h4>Currently</h4>
-                    <h5>Temp: {currently.temperature}°F, weather: {currently.precipType}</h5>
+                <div className="flex-container">
+                    <div className="small-weather">
+                        <div>
+                            <h4>Currently</h4>
+                            <h4>{Math.round(currently.apparentTemperature)}°F</h4>
+                            {this.weatherIcon(currently.icon)}
+                            <h4>{currently.summary}</h4>
+                        </div>
+                    </div>
+                    <div className="big-weather">
+                        {this.fiveHourForecast(hourly)}
+                        <h3>{hourly.summary}</h3>
+                    </div>
+                    <div className="small-weather">
+                        <div>
+                            <h4>Tomorrow</h4>
+                            <h4>↑ {Math.round(daily.data[1].apparentTemperatureHigh)}°F ↓ {Math.round(daily.data[1].apparentTemperatureLow)}°F</h4>
+                            {this.weatherIcon(daily.data[1].icon)}
+                            <h4>{daily.data[1].summary}</h4>
+
+                        </div>
+                    </div>
                 </div>
             )
         }
@@ -76,6 +121,11 @@ class Weather extends React.PureComponent {
         }
     }
 
+    weatherIcon = (iconName) => {
+        return (
+            <img src={weatherDic[iconName]} />
+        )
+    }
 
     render() {
         if (this.props.weather) {
@@ -94,16 +144,13 @@ class Weather extends React.PureComponent {
              * cloudy DONE
              * partly-cloudy-day DONE
              * partly-cloudy-night DONE
-             * hail
+             * hail;
              * thunderstorm DONE
              * tornado
              */
-            <div>
-                <div style={{ height: "300px", color: "white" }}>
-                    {this.theWeather()}
-                </div>
-                <img src={weatherDic["bolt"]} />
-            </div>
+            <>
+                {this.theWeather()}
+            </>
         )
     }
 }
