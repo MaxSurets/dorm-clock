@@ -61,19 +61,22 @@ class Weather extends React.PureComponent {
         this.props.getWeather()
     }
 
-    fiveHourForecast = (hourly, currently) => {
+    fiveHourForecast = (hourly) => {
         let forecast = [];
+        let d = new Date();
         let currHour = new Date().getHours();
-        for (let x = currHour + 1; x <= currHour + 5; x++) {
+        console.log("Current hour:" + currHour);
+        for (let x = (currHour + 1); x <= (currHour + 5); x++) {
             let hour = hourly.data[x];
-            if (x > 12 && x <= 24) {
-                x -= 12;
+            let y = x;
+            if (y > 12 && y <= 24) {
+                y -= 12;
             }
-            else if (x > 24) {
-                x -= 24;
+            else if (y > 24) {
+                y -= 24;
             }
-            else if (x === 0) {
-                x = 12;
+            else if (y === 0) {
+                y = 12;
             }
             forecast.push(
                 <div className="hour-box">
@@ -103,7 +106,7 @@ class Weather extends React.PureComponent {
                         </div>
                     </div>
                     <div className="big-weather">
-                        {this.fiveHourForecast(hourly, currently)}
+                        {this.fiveHourForecast(hourly)}
                         <h3>{hourly.summary}</h3>
                     </div>
                     <div className="small-weather">
@@ -125,7 +128,9 @@ class Weather extends React.PureComponent {
 
     weatherIcon = (iconName) => {
         return (
-            <img src={weatherDic[iconName]} />
+            <div className="img-container">
+                <img src={weatherDic[iconName]} />
+            </div>
         )
     }
 

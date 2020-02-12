@@ -55,3 +55,7 @@ h3 {
 .small-weather img {
   width: 90px;
 }
+
+.img-container {
+    height: 80px;
+}
