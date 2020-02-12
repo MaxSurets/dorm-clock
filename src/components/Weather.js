@@ -65,10 +65,9 @@ class Weather extends React.PureComponent {
         let forecast = [];
         let d = new Date();
         let currHour = new Date().getHours();
-        console.log("Current hour:" + currHour);
-        for (let x = (currHour + 1); x <= (currHour + 5); x++) {
+        for (let x = 1; x <= 5; x++) {
             let hour = hourly.data[x];
-            let y = x;
+            let y = new Date(hour.time*1000).getHours();
             if (y > 12 && y <= 24) {
                 y -= 12;
             }
@@ -82,7 +81,7 @@ class Weather extends React.PureComponent {
                 <div className="hour-box">
                     <h4>{Math.round(hour.apparentTemperature)}°</h4>
                     {this.weatherIcon(hour.icon)}
-                    <h4>{x}:00</h4>
+                    <h4>{y}:00</h4>
                 </div>);
         }
         return <div className="hour-box-container">{forecast}</div>
@@ -93,7 +92,6 @@ class Weather extends React.PureComponent {
         console.log('called theWeather')
         if (this.props.weather) {
             let { currently, hourly, daily } = JSON.parse(this.props.weather);
-            console.log('interesting', currently, hourly, daily);
 
             return (
                 <div className="flex-container">
