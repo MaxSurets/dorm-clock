@@ -64,7 +64,6 @@ class Weather extends React.PureComponent {
     fiveHourForecast = (hourly) => {
         let forecast = [];
         let d = new Date();
-        let currHour = new Date().getHours();
         for (let x = 1; x <= 5; x++) {
             let hour = hourly.data[x];
             let y = new Date(hour.time*1000).getHours();
