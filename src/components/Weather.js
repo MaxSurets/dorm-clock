@@ -61,9 +61,10 @@ class Weather extends React.PureComponent {
         this.props.getWeather()
     }
 
-    fiveHourForecast = (hourly) => {
+    fiveHourForecast = (hourly, currently) => {
         let forecast = [];
-        for (let x = 1; x <= 5; x++) {
+        let currHour = Date(currently.time * 1000).getHours();
+        for (let x = currHour + 1; x <= currHour + 5; x++) {
             let hour = hourly.data[x];
             let d = new Date(hour.time * 1000)
             let dHour = d.getHours();
@@ -101,7 +102,7 @@ class Weather extends React.PureComponent {
                         </div>
                     </div>
                     <div className="big-weather">
-                        {this.fiveHourForecast(hourly)}
+                        {this.fiveHourForecast(hourly, currently)}
                         <h3>{hourly.summary}</h3>
                     </div>
                     <div className="small-weather">
