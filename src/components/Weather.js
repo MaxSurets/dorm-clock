@@ -69,6 +69,7 @@ class Weather extends React.PureComponent {
         for (let x = (currHour + 1); x <= (currHour + 5); x++) {
             let hour = hourly.data[x];
             let y = x;
+            console.log(y);
             if (y > 12 && y <= 24) {
                 y -= 12;
             }
@@ -78,11 +79,12 @@ class Weather extends React.PureComponent {
             else if (y === 0) {
                 y = 12;
             }
+            console.log(y);
             forecast.push(
                 <div className="hour-box">
                     <h4>{Math.round(hour.apparentTemperature)}°</h4>
                     {this.weatherIcon(hour.icon)}
-                    <h4>{x}:00</h4>
+                    <h4>{y}:00</h4>
                 </div>);
         }
         return <div className="hour-box-container">{forecast}</div>
