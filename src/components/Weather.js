@@ -40,16 +40,10 @@ const weatherDic = {
 
 
 class Weather extends React.PureComponent {
-    constructor(props) {
-        super(props);
-    }
 
     componentDidMount() {
         this.props.getWeather();
-        this.timerID = setInterval(
-            () => this.updateWeather(),
-            1800000
-        );
+        this.syncUpdateWithHour();
     }
 
 
@@ -58,15 +52,29 @@ class Weather extends React.PureComponent {
     }
 
     updateWeather = () => {
-        this.props.getWeather()
+        alert('updateWeather called');
+        console.log("Created half hour timer between api calls at", new Date())
+        this.timerID = setInterval(
+            () => this.props.getWeather(),
+            1800000
+        );
     }
+
+    syncUpdateWithHour = () => {
+        const current = new Date();
+        const nearestHour = current.getHours() + 1;
+        const roundedDate = new Date().setHours(nearestHour, 0, 0, 0);
+        console.log('updateWeather in (ms) ->', roundedDate - current)
+        // Syncs the updateWeather call with the turn of the hour
+        setTimeout(() => { this.updateWeather() }, roundedDate - current)
+    }
+
 
     fiveHourForecast = (hourly) => {
         let forecast = [];
-        let d = new Date();
         for (let x = 1; x <= 5; x++) {
             let hour = hourly.data[x];
-            let y = new Date(hour.time*1000).getHours();
+            let y = new Date(hour.time * 1000).getHours();
             if (y > 12 && y <= 24) {
                 y -= 12;
             }
