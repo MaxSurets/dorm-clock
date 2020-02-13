@@ -1,5 +1,5 @@
 import React from 'react';
-import '../css/clock.css'
+import '../css/clock.css';
 
 export default class Clock extends React.Component {
     constructor(props) {
@@ -19,6 +19,7 @@ export default class Clock extends React.Component {
             1000
         );
     }
+
     makeDay = (i) => {
         let tday = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
         if (i >= 0 && i <= 6)
@@ -39,10 +40,10 @@ export default class Clock extends React.Component {
             s: this.makeTwoDigit(date.getSeconds(), false),
         })
     }
-    
+
 
     makeTwoDigit = (i, hours) => {
-        if (hours && i == 0)
+        if (hours && i === 0)
             i = 12;
         if (i < 10)
             i = '0' + i;
@@ -52,6 +53,8 @@ export default class Clock extends React.Component {
     }
 
     render() {
+
+
         return (
             <div>
                 <p>{this.state.h}:{this.state.m}:{this.state.s}</p>

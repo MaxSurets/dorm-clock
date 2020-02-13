@@ -1,0 +1,61 @@
+.weather-title {
+  font-size: 32px;
+}
+
+h3 {
+  margin: 15px 0 0 0;
+}
+
+.flex-container {
+  display: flex;
+  flex-wrap: nowrap;
+}
+
+.flex-container > div {
+  color: white;
+  text-align: center;
+  padding: 0 11px;
+}
+
+.big-weather {
+  flex-grow: 2;
+  padding: 15px;
+}
+
+.small-weather {
+  flex-grow: 0;
+  padding: 0 15px;
+  width: 150px;
+}
+
+.hour-box-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  width: 100%;
+}
+
+.hour-box {
+  margin: 0 7px;
+  font-size: 20pt;
+  padding: 0 30px;
+  border: #2b2b2b solid 2px;
+  border-radius: 15px;
+  background: #0c0c0c;
+}
+
+.hour-box h4 {
+  margin: 25px;
+}
+
+.hour-box img {
+  width: 70px;
+}
+
+.small-weather img {
+  width: 90px;
+}
+
+.img-container {
+    height: 80px;
+}
