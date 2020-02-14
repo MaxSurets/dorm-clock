@@ -51,8 +51,15 @@ class Weather extends React.PureComponent {
         clearInterval(this.timerID);
     }
 
+    weatherIcon = (iconName) => {
+        return (
+            <div className="img-container">
+                <img src={weatherDic[iconName]} />
+            </div>
+        )
+    }
+
     updateWeather = () => {
-        alert('updateWeather called');
         console.log("Created half hour timer between api calls at", new Date())
         this.timerID = setInterval(
             () => this.props.getWeather(),
@@ -64,7 +71,7 @@ class Weather extends React.PureComponent {
         const current = new Date();
         const nearestHour = current.getHours() + 1;
         const roundedDate = new Date().setHours(nearestHour, 0, 0, 0);
-        console.log('updateWeather in (ms) ->', roundedDate - current)
+
         // Syncs the updateWeather call with the turn of the hour
         setTimeout(() => { this.updateWeather() }, roundedDate - current)
     }
@@ -96,7 +103,7 @@ class Weather extends React.PureComponent {
     }
 
     theWeather = () => {
-        console.log('called theWeather')
+        console.log('refresh at', new Date())
         if (this.props.weather) {
             let { currently, hourly, daily } = JSON.parse(this.props.weather);
 
@@ -129,14 +136,6 @@ class Weather extends React.PureComponent {
         else {
             return ''
         }
-    }
-
-    weatherIcon = (iconName) => {
-        return (
-            <div className="img-container">
-                <img src={weatherDic[iconName]} />
-            </div>
-        )
     }
 
     render() {
